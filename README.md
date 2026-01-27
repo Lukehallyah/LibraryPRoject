@@ -3,7 +3,7 @@
 
 What theOdinProject wants me to implement:
 
-1)Store the Objects in an array
+1)Store the Objects in an array(finished)
 2)Create a Constructor function that 
     creates a book
     stores the book object in an array

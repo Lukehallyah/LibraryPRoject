@@ -3,6 +3,8 @@ const div=document.querySelector('.bookList');
 const button = document.getElementById('addButton');
 const input = document.querySelector('input');
 
+
+//Constructor
 function Book(title, author, pages, character){
     this.title=title;
     this.author=author;
@@ -11,14 +13,20 @@ function Book(title, author, pages, character){
 }
 
 
+//Function to Add Books Manually
+function addBookToLibrary(title, author, pages, character,){
+    let newBook= new Book(title, author, pages, character);
+    myLibrary.push(newBook);
 
-//the key is to make a function that creates the book, then adds it to the Library
+}
+//Manually adding each book to library
+addBookToLibrary('Animorphs : The Invasion', 'K.A. Applegate', 184, 'Jake');
+addBookToLibrary('Animorphs: The Visitor', 'K.A. Applegate', 175, 'Rachel')
+addBookToLibrary('Animorphs: The Encounter', 'K.A. Applegate', 150, 'Tobias');
+addBookToLibrary('Animorphs: The Message', 'K.A. Applegate', 151, 'Cassie');
+addBookToLibrary('Animorphs: The Predator', 'K.A. Applegate', 152, 'Marco');
 
-let animorph1= new Book('Animorphs : The Invasion', 'K.A. Applegate', 184, 'Jake');
-let animorph2 = new Book('Animorphs: The Visitor', 'K.A. Applegate', 175, 'Rachel')
-let animorph3 = new Book('Animorphs: The Encounter', 'K.A. Applegate', 150, 'Tobias');
-let animorph4 = new Book('Animorphs: The Message', 'K.A. Applegate', 151, 'Cassie');
-let animorph5 = new Book('Animorphs: The Predator', 'K.A. Applegate', 152, 'Marco');
+
 
 
 
@@ -26,13 +34,14 @@ let animorph5 = new Book('Animorphs: The Predator', 'K.A. Applegate', 152, 'Marc
 //Need a card to be created in bookCard
 //Each card is going to be a little box containing: title, author, pages, character
 
+
+
+
+
 const titleInfo = document.getElementById('title');
 const authorInfo = document.getElementById('author');
 const pagesInfo = document.getElementById('pages');
 const characterInfo = document.getElementById('character');
-
-
-
 
 
 //LOGIC FOR ADDING BOOKS//
