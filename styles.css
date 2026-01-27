@@ -129,35 +129,10 @@ main{
 .libraryCard{
     border: 2px solid black;
     grid-area: 1/2/3/3;
-
-    display: grid;
-    grid-template: 15%/100%;
+    /*taking up space of .container*/
 
 }
 
-.namePlates{
-    width: 100%;
-    display: grid;
-    grid-auto-flow: row;
-    grid-template-rows: 1fr;
-    grid-template-columns: 40% 20% 20% 20%;
-
-    border-bottom: 2px solid black;
-
-
-}
-
-.namePlates p{
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.25rem;
-}
-
-.namePlates p:nth-of-type(1), .namePlates p:nth-of-type(2), .namePlates p:nth-of-type(3){
-  border-right: 2px solid black;
-}
 
 
 .bookInfo{

@@ -10,6 +10,8 @@ function Book(title, author, pages, character){
     this.author=author;
     this.pages=pages;
     this.character=character;
+
+    this.id= self.crypto.randomUUID();
 }
 
 
