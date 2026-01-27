@@ -15,14 +15,48 @@
     
     <main>
         <div class="container">
-            <div class="searchBar">
+            <div class="bookAdd">
                 <form action="">
-                    <label for="search">Search: </label>
-                    <input type="search" id="search" name="search">
-                    <button type="submit">Go</button>
+                    <div>
+                        <label for="title">Book Title : </label>
+                        <input type="text" id="title" name="title">
+                    </div>
+
+                    <div>
+                        <label for="author">Author : </label>
+                        <input type="text" id="author" name="author">
+                    </div>
+
+                    <div>
+                        <label for="pages">Pages : </label>
+                        <input type="text" id="pages" name="pages">
+                    </div>
+
+                    <div>
+                        <label for="character">Character : </label>
+                        <input type="text" id="character" name="character">
+                    </div>
+
+                    <div>
+                        <button id="addButton">Add</button>
+                    </div>
                 </form>
             </div>
-            <div class="libraryCard"></div>
+            <div class="libraryCard">
+                <div class="namePlates">
+                    <p>Title</p>
+                    <p>Author</p>
+                    <p>Pages</p>
+                    <p>Character</p>
+                </div>
+                <div class="bookInfo">
+
+                    <div class="bookList">
+                    </div>
+                    
+                    
+                </div>
+            </div>
         </div>
     </main>
 
@@ -31,3 +65,7 @@
     </footer>
 </body>
 </html>
+
+<!--Going to try and us <ul> kinda like the shopping list, to add the attributes in an object to their correct
+    locations. Title would immediately go to tilte, author to author etc. Should be fairly straightforward just have 
+    to have it so that it stores it in the array and can pull from the array to display in the correct boxes-->
