@@ -1,4 +1,8 @@
-const myLibrary = [];
+let myLibrary = [];
+//IMPORTANT= using let instead of const
+//      makes it possible for myLibrary to change instead of splice() etc
+
+
 const div=document.querySelector('.bookList');
 const button = document.getElementById('addButton');
 const input = document.querySelector('input');
@@ -14,6 +18,9 @@ function Book(title, author, pages, character){
     this.id=self.crypto.randomUUID();
 }
 
+
+//this.id is moved into myLibrary[] because it's part of the book, despite
+//not being added in the constructor directly.
 
 //Function to Add Books Manually
 function addBookToLibrary(title, author, pages, character,){
@@ -52,6 +59,7 @@ const characterInfo = document.getElementById('character');
 
 function displayBook(book){
     const card = document.createElement('div');
+    card.dataset.id=book.id;
     const span = document.createElement('div');
     const span2= document.createElement('div');
     const span3 = document.createElement('div');
@@ -59,22 +67,36 @@ function displayBook(book){
 
 
     //TEST
-    const span5= document.createElement('button');
-    span5.textContent='Rem';
-    span5.addEventListener('click',()=>{
-        myLibrary=myLibrary.filter(b=>b.id!==book.id)
+    const span5= document.createElement('div');
+    const but1 = document.createElement('button');
 
-        span5.parentElement.remove(); 
+     but1.addEventListener('click',(e)=>{
+        const cardDiv= e.target.closest('div[data-id]');  //the div 'card' that includes book.id, selects just the div
+        const thisId= cardDiv.dataset.id;  // selects the actual id inside the div for comparison.
+        myLibrary=myLibrary.filter(b=>b.id.toString()!==thisId);  //filters and returns everything but that card
+        cardDiv.remove() // supposedly removes that card
+
     })
 
+    span5.appendChild(but1);
+    span5.style.display='flex';
+    span5.style.justifyContent='center';
+    but1.textContent='Rem';
+    but1.style.marginTop='2px';
+    but1.style.marginBottom='2px';
+    
+   
 
 
 
-    const span6=document.createElement('input');
-    span6.type='radio';
-    span6.name='read-status';
-    span6.id='read-status';
-    span6.value='read-yes';
+
+    const span6=document.createElement('div');
+    const but2 =document.createElement('input');
+    span6.appendChild(but2);
+    but2.type='radio';
+    but2.name='read-status';
+    but2.id='read-status';
+    but2.value='read-yes';
     
     
     
@@ -91,8 +113,8 @@ function displayBook(book){
     span2.style.width='20%';
     span3.style.width='10%';
     span4.style.width= '15%';
-    span5.style.width='auto';
-    span6.style.width='auto';
+    span5.style.width='10%';
+    span6.style.width='10%';
     
     
     if(card){
@@ -104,6 +126,7 @@ function displayBook(book){
         card.style.backgroundColor='white';
         card.style.margin='0';
         card.style.padding='0';
+        card.style.marginTop='1vh';
         
 
         card.appendChild(span);
@@ -125,6 +148,8 @@ function displayBook(book){
 }
 
 myLibrary.forEach(book=>displayBook(book));
+
+
 
 //TEST
 

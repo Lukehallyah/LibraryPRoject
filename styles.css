@@ -145,6 +145,12 @@ main{
   width: 100%;
 }
 
+.title div{
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
 .title div:first-child{
   width: 35%;
 }
@@ -158,8 +164,13 @@ main{
   width: 10%;
 }
 
-.title.div:nth-of-type(4){
+.title div:nth-of-type(4){
   width: 15%;
+}
+
+.title div:nth-of-type(5),
+.title div:nth-of-type(6){
+  width: 10%;
 }
 
 
