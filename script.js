@@ -7,6 +7,11 @@ const div=document.querySelector('.bookList');
 const button = document.getElementById('addButton');
 const input = document.querySelector('input');
 
+const titleInp= document.getElementById('title');
+const authorInp= document.getElementById('author');
+const pagesInp= document.getElementById('pages');
+const characterInp= document.getElementById('character');
+
 
 //Constructor
 function Book(title, author, pages, character){
@@ -158,94 +163,40 @@ myLibrary.forEach(book=>displayBook(book));
 
 //LOGIC FOR ADDING BOOKS//
 
+
+
+//WHY AM I REDOING A FUNCTION??
+//Just take these values and pass them into the custructor adding them to myLibrary[]
+//then when they're added, refresh the array and voila there it is
+
 button.addEventListener('click',(e)=>{
     e.preventDefault();
 
-    const card = document.createElement('div');
-    const span = document.createElement('div');
-    const span2= document.createElement('div');
-    const span3 = document.createElement('div');
-    const span4 = document.createElement('div');
-
-    //TEST
- const span5= document.createElement('div');
-    const but1 = document.createElement('button');
-
-     but1.addEventListener('click',(e)=>{
-        const cardDiv= e.target.closest('div[data-id]');  //the div 'card' that includes book.id, selects just the div
-        const thisId= cardDiv.dataset.id;  // selects the actual id inside the div for comparison.
-        myLibrary=myLibrary.filter(b=>b.id.toString()!==thisId);  //filters and returns everything but that card
-        cardDiv.remove() // supposedly removes that card
-
-    })
-
-    span5.appendChild(but1);
-    span5.style.display='flex';
-    span5.style.justifyContent='center';
-    but1.textContent='Rem';
-    but1.style.marginTop='2px';
-    but1.style.marginBottom='2px';
+    const title= titleInp.value;
+    const author= authorInp.value;
+    const pages= pagesInp.value;
+    const character= characterInp.value;
 
 
+    let addBook= new Book(title, author, pages, character);
+    myLibrary.push(addBook);
+
+    //REMEMBER!! UI AND DATA ARRAYS ARE 2 DIFFERENT THINGS
+    //you can add to an array and it will never show
+    //remember to fix the data, and then the UI too.
+    displayBook(addBook);
+
+    titleInp.value='';
+    authorInp.value='';
+    pagesInp.value='';
+    characterInp.value='';
 
 
-    const span6=document.createElement('div');
-    const but2 =document.createElement('input');
-    span6.appendChild(but2);
-    but2.type='radio';
-    but2.name='read-status';
-    but2.id='read-status';
-    but2.value='read-yes';
-    
-    
-
-
-
-    //TEST
-
-    span.style.width='35%';
-    span2.style.width='20%';
-    span3.style.width='10%';
-    span4.style.width= '15%';
-    span5.style.width='10%';
-    span6.style.width='10%';
-    
-    const title = titleInfo.value;
-    const author = authorInfo.value;
-    const pages = pagesInfo.value;
-    const character= characterInfo.value;
-
-    title.value= '';
-    author.value= '';
-    pages.value='';
-    character.value='';
-    
-    
-    if(card){
-        card.style.width='100%';
-        card.style.display='flex';
-        card.style.border='2px solid white';
-        card.style.borderLeft='none';
-        card.style.marginBottom='5px';
-        card.style.backgroundColor='white';
-
-        card.appendChild(span);
-        span.textContent=title;
-        card.appendChild(span2);
-        span2.textContent=author;
-        card.appendChild(span3);
-        span3.textContent=pages;
-        card.appendChild(span4);
-        span4.textContent=character;
-        card.appendChild(span5);
-        card.appendChild(span6);
-
-
-    }
-
-    
-    div.appendChild(card);
-
-    
 
 });
+// defined the inputs
+//made the inputs for Book constructor(title, author, pages, character) as variables
+//those variables get taken into addBook
+//push this new book to the array
+//also display in the UI
+//cleared the inputs
