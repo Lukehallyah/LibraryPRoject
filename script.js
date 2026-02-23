@@ -14,18 +14,26 @@ const characterInp= document.getElementById('character');
 
 
 //Constructor
-function Book(title, author, pages, character){
+function Book(title, author, pages, character, readStatus){
     this.title=title;
     this.author=author;
     this.pages=pages;
     this.character=character;
+    this.readStatus=false;
 
     this.id=self.crypto.randomUUID();
 }
 
-
 //this.id is moved into myLibrary[] because it's part of the book, despite
 //not being added in the constructor directly.
+
+Book.prototype.toggleRead= function(){
+    this.readStatus = !this.readStatus;
+}
+
+//Works to toggle the read status
+//this readStatus 'now equals' opposite read status
+//this is a toggle
 
 //Function to Add Books Manually
 function addBookToLibrary(title, author, pages, character,){
@@ -55,10 +63,7 @@ addBookToLibrary('Animorphs: The Predator', 'K.A. Applegate', 152, 'Marco');
 
 
 
-const titleInfo = document.getElementById('title');
-const authorInfo = document.getElementById('author');
-const pagesInfo = document.getElementById('pages');
-const characterInfo = document.getElementById('character');
+
 
 //TEST
 
@@ -96,9 +101,29 @@ function displayBook(book){
 
 
     const span6=document.createElement('div');
-    const but2 =document.createElement('input');
+    const but2 =document.createElement('button');
+    //test
+    but2.addEventListener('click', (e)=>{
+        const currentCard=e.target.closest('div[data-id]');
+        const id = currentCard.dataset.id;
+        const book= myLibrary.find(book=>book.id===id)
+        book.toggleRead()
+        //Book.prototype.toggleRead\
+        //placing in prototype saves memory
+        //and makes it consistent across object instances
+        //object 'instances' are the objects created by the Book constructor
+    }
+
+)
+    //test
+    but2.style.height="80%";
+    but2.style.width="50%";
     span6.appendChild(but2);
-    but2.type='radio';
+    span6.style.display='flex';
+    span6.style.justifyContent="left";
+    span6.style.alignItems="center";
+    but2.textContent='R/U';
+    but2.style.fontSize='0.8rem';
     but2.name='read-status';
     but2.id='read-status';
     but2.value='read-yes';
@@ -115,11 +140,13 @@ function displayBook(book){
     
 
     span.style.width='35%';
+    span.style.marginLeft="1rem";
     span2.style.width='20%';
     span3.style.width='10%';
     span4.style.width= '15%';
     span5.style.width='10%';
     span6.style.width='10%';
+    span6.style.marginLeft="1.5rem";
     
     
     if(card){
@@ -144,6 +171,7 @@ function displayBook(book){
         span4.textContent=book.character;
         card.appendChild(span5);
         card.appendChild(span6);
+
 
 
     }
