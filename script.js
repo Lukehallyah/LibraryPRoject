@@ -43,6 +43,33 @@ function addBookToLibrary(title, author, pages, character,){
 }
 
 
+//CLASSES
+
+class LibraryProject{
+    constructor(title, author, pages, character, readStatus){
+        this.title=title;
+        this.author=author;
+        this.pages=pages;
+        this.character=character;
+        this.readStatus=false;
+
+        this.id=self.crypto.randomUUID();
+    }
+
+    toggleRead(){
+        this.readStatus = !this.readStatus;
+    }
+
+    function addBookToLibrary(title, author, pages, character,){
+        let newBook= new Book(title, author, pages, character);
+        myLibrary.push(newBook);
+
+    }
+}
+
+
+
+
 //Manually adding each book to library
 
 addBookToLibrary('Animorphs : The Invasion', 'K.A. Applegate', 184, 'Jake');
