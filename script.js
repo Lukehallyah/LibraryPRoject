@@ -14,36 +14,29 @@ const characterInp= document.getElementById('character');
 
 
 //Constructor
-function Book(title, author, pages, character, readStatus){
-    this.title=title;
-    this.author=author;
-    this.pages=pages;
-    this.character=character;
-    this.readStatus=false;
+// function Book(title, author, pages, character, readStatus){
+//     this.title=title;
+//     this.author=author;
+//     this.pages=pages;
+//     this.character=character;
+//     this.readStatus=false;
 
-    this.id=self.crypto.randomUUID();
-}
+//     this.id=self.crypto.randomUUID();
+// }
 
-//this.id is moved into myLibrary[] because it's part of the book, despite
-//not being added in the constructor directly.
+// //this.id is moved into myLibrary[] because it's part of the book, despite
+// //not being added in the constructor directly.
 
-Book.prototype.toggleRead= function(){
-    this.readStatus = !this.readStatus;
-}
+// Book.prototype.toggleRead= function(){
+//     this.readStatus = !this.readStatus;
+// }
 
 //Works to toggle the read status
 //this readStatus 'now equals' opposite read status
 //this is a toggle
 
-//Function to Add Books Manually
-function addBookToLibrary(title, author, pages, character,){
-    let newBook= new Book(title, author, pages, character);
-    myLibrary.push(newBook);
-
-}
 
 
-//CLASSES
 
 class LibraryProject{
     constructor(title, author, pages, character, readStatus){
@@ -60,41 +53,10 @@ class LibraryProject{
         this.readStatus = !this.readStatus;
     }
 
-    function addBookToLibrary(title, author, pages, character,){
-        let newBook= new Book(title, author, pages, character);
-        myLibrary.push(newBook);
-
-    }
-}
+    
 
 
-
-
-//Manually adding each book to library
-
-addBookToLibrary('Animorphs : The Invasion', 'K.A. Applegate', 184, 'Jake');
-addBookToLibrary('Animorphs: The Visitor', 'K.A. Applegate', 175, 'Rachel')
-addBookToLibrary('Animorphs: The Encounter', 'K.A. Applegate', 150, 'Tobias');
-addBookToLibrary('Animorphs: The Message', 'K.A. Applegate', 151, 'Cassie');
-addBookToLibrary('Animorphs: The Predator', 'K.A. Applegate', 152, 'Marco');
-
-
-
-
-
-//PsuedoCode: 
-//Need a card to be created in bookCard
-//Each card is going to be a little box containing: title, author, pages, character
-
-
-
-
-
-
-
-//TEST
-
-function displayBook(book){
+    displayBook(book){
     const card = document.createElement('div');
     card.dataset.id=book.id;
     const span = document.createElement('div');
@@ -207,22 +169,27 @@ function displayBook(book){
 
 }
 
-myLibrary.forEach(book=>displayBook(book));
+
+}
 
 
 
-//TEST
+//Function to Add Books Manually
+function addBookToLibrary(title, author, pages, character,){
+    let newBook= new LibraryProject(title, author, pages, character);
+    myLibrary.push(newBook);
 
+}
 
+addBookToLibrary('Animorphs : The Invasion', 'K.A. Applegate', 184, 'Jake');
+addBookToLibrary('Animorphs: The Visitor', 'K.A. Applegate', 175, 'Rachel')
+addBookToLibrary('Animorphs: The Encounter', 'K.A. Applegate', 150, 'Tobias');
+addBookToLibrary('Animorphs: The Message', 'K.A. Applegate', 151, 'Cassie');
+addBookToLibrary('Animorphs: The Predator', 'K.A. Applegate', 152, 'Marco');
 
+const library = new LibraryProject();
+myLibrary.forEach(book=>library.displayBook(book));
 
-//LOGIC FOR ADDING BOOKS//
-
-
-
-//WHY AM I REDOING A FUNCTION??
-//Just take these values and pass them into the custructor adding them to myLibrary[]
-//then when they're added, refresh the array and voila there it is
 
 button.addEventListener('click',(e)=>{
     e.preventDefault();
@@ -233,13 +200,13 @@ button.addEventListener('click',(e)=>{
     const character= characterInp.value;
 
 
-    let addBook= new Book(title, author, pages, character);
+    let addBook= new LibraryProject(title, author, pages, character);
     myLibrary.push(addBook);
 
     //REMEMBER!! UI AND DATA ARRAYS ARE 2 DIFFERENT THINGS
     //you can add to an array and it will never show
     //remember to fix the data, and then the UI too.
-    displayBook(addBook);
+    library.displayBook(addBook);
 
     titleInp.value='';
     authorInp.value='';
@@ -255,3 +222,7 @@ button.addEventListener('click',(e)=>{
 //push this new book to the array
 //also display in the UI
 //cleared the inputs
+
+
+
+
